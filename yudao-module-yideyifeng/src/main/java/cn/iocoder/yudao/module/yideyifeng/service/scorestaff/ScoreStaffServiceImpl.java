@@ -78,6 +78,11 @@ public class ScoreStaffServiceImpl implements ScoreStaffService {
     }
 
     @Override
+    public List<ScoreStaffDO> getAllScoreStaff() {
+        return scoreStaffMapper.selectList();
+    }
+
+    @Override
     public PageResult<ScoreStaffDO> getScoreStaffPage(ScoreStaffPageReqVO pageReqVO) {
         return scoreStaffMapper.selectPage(pageReqVO);
     }

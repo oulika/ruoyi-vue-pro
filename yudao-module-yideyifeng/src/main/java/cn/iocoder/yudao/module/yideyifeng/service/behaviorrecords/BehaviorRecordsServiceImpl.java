@@ -1,6 +1,7 @@
 package cn.iocoder.yudao.module.yideyifeng.service.behaviorrecords;
 
 import cn.hutool.core.collection.CollUtil;
+import jodd.util.StringUtil;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,7 @@ public class BehaviorRecordsServiceImpl implements BehaviorRecordsService {
     public Long createBehaviorRecords(BehaviorRecordsSaveReqVO createReqVO) {
         // 插入
         BehaviorRecordsDO behaviorRecords = BeanUtils.toBean(createReqVO, BehaviorRecordsDO.class);
+        behaviorRecords.setImagePath(StringUtil.join(createReqVO.getImagePath(),";"));
         behaviorRecordsMapper.insert(behaviorRecords);
 
         // 返回

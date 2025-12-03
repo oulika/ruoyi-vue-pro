@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.module.yideyifeng.controller.admin.behaviorrecords;
 
+import com.google.common.collect.Lists;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,7 +78,9 @@ public class BehaviorRecordsController {
     @PreAuthorize("@ss.hasPermission('yideyifeng:behavior-records:query')")
     public CommonResult<BehaviorRecordsRespVO> getBehaviorRecords(@RequestParam("id") Long id) {
         BehaviorRecordsDO behaviorRecords = behaviorRecordsService.getBehaviorRecords(id);
-        return success(BeanUtils.toBean(behaviorRecords, BehaviorRecordsRespVO.class));
+        BehaviorRecordsRespVO ret = BeanUtils.toBean(behaviorRecords, BehaviorRecordsRespVO.class);
+        ret.setImagePath(Lists.newArrayList(behaviorRecords.getImagePath().split(";")));
+        return success(ret);
     }
 
     @GetMapping("/page")

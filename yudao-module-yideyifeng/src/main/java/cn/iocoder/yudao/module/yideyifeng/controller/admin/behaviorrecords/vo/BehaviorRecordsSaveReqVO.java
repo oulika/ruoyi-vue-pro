@@ -34,6 +34,6 @@ public class BehaviorRecordsSaveReqVO {
     private String department;
 
     @Schema(description = "图片路径")
-    private String imagePath;
+    private List<String> imagePath;
 
 }

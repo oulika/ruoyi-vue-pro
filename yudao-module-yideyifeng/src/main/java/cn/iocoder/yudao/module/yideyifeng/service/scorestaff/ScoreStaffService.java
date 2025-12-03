@@ -59,4 +59,11 @@ public interface ScoreStaffService {
      */
     PageResult<ScoreStaffDO> getScoreStaffPage(ScoreStaffPageReqVO pageReqVO);
 
+    /**
+     * 获得所有员工信息
+     *
+     * @return 员工信息
+     */
+    List<ScoreStaffDO> getAllScoreStaff();
+
 }

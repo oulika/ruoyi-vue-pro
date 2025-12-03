@@ -46,10 +46,10 @@ public class BehaviorRecordsRespVO {
 
     @Schema(description = "图片路径")
     @ExcelProperty("图片路径")
-    private String imagePath;
+    private List<String> imagePath;
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;
 
-}
+}

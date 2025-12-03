@@ -78,6 +78,11 @@ public class ScoreTemplateServiceImpl implements ScoreTemplateService {
     }
 
     @Override
+    public List<ScoreTemplateDO> getAllScoreTemplate() {
+        return scoreTemplateMapper.selectList();
+    }
+
+    @Override
     public PageResult<ScoreTemplateDO> getScoreTemplatePage(ScoreTemplatePageReqVO pageReqVO) {
         return scoreTemplateMapper.selectPage(pageReqVO);
     }

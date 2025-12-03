@@ -52,6 +52,13 @@ public interface ScoreTemplateService {
     ScoreTemplateDO getScoreTemplate(Long id);
 
     /**
+     * 获得所有评分标准
+     *
+     * @return 评分标准
+     */
+    List<ScoreTemplateDO> getAllScoreTemplate();
+
+    /**
      * 获得评分标准分页
      *
      * @param pageReqVO 分页查询
