@@ -82,9 +82,8 @@ public class ScoreStaffController {
 
     @GetMapping("/getAll")
     @Operation(summary = "获得所有员工信息")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
     @PreAuthorize("@ss.hasPermission('yideyifeng:score-staff:query')")
-    public CommonResult<List<ScoreStaffRespVO>> getAllScoreStaff(@RequestParam("id") Long id) {
+    public CommonResult<List<ScoreStaffRespVO>> getAllScoreStaff() {
         List<ScoreStaffDO> scoreStaff = scoreStaffService.getAllScoreStaff();
         return success(BeanUtils.toBean(scoreStaff, ScoreStaffRespVO.class));
     }

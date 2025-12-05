@@ -20,6 +20,10 @@ public class BehaviorRecordsRespVO {
     @ExcelProperty("员工ID")
     private Integer staffId;
 
+    @Schema(description = "员工姓名", example = "李四")
+    @ExcelProperty("员工姓名")
+    private String staffName;
+
     @Schema(description = "季度")
     @ExcelProperty("季度")
     private Integer quarter;
@@ -46,6 +50,7 @@ public class BehaviorRecordsRespVO {
 
     @Schema(description = "图片路径")
     @ExcelProperty("图片路径")
+    @ExcelIgnore
     private List<String> imagePath;
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)

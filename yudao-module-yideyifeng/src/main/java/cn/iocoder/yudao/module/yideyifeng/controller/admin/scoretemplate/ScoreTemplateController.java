@@ -82,9 +82,8 @@ public class ScoreTemplateController {
 
     @GetMapping("/getAll")
     @Operation(summary = "获得所有评分标准")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
     @PreAuthorize("@ss.hasPermission('yideyifeng:score-template:query')")
-    public CommonResult<List<ScoreTemplateRespVO>> getAllScoreTemplate(@RequestParam("id") Long id) {
+    public CommonResult<List<ScoreTemplateRespVO>> getAllScoreTemplate() {
         List<ScoreTemplateDO> scoreTemplate = scoreTemplateService.getAllScoreTemplate();
         return success(BeanUtils.toBean(scoreTemplate, ScoreTemplateRespVO.class));
     }

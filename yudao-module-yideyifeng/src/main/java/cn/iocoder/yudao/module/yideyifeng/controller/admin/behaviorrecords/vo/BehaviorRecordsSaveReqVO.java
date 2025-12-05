@@ -15,6 +15,10 @@ public class BehaviorRecordsSaveReqVO {
     @Schema(description = "员工ID", example = "8077")
     private Integer staffId;
 
+    @Schema(description = "员工Name", example = "8077")
+    private String staffName;
+
+
     @Schema(description = "季度")
     private Integer quarter;
 

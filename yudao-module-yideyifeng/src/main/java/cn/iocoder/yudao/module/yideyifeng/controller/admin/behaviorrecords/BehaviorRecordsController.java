@@ -1,8 +1,10 @@
 package cn.iocoder.yudao.module.yideyifeng.controller.admin.behaviorrecords;
 
 import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,6 +40,9 @@ public class BehaviorRecordsController {
 
     @Resource
     private BehaviorRecordsService behaviorRecordsService;
+
+    @Value("classpath:医德档案考评表.xlsx")
+    private org.springframework.core.io.Resource resource;
 
     @PostMapping("/create")
     @Operation(summary = "创建行为记录")
@@ -99,9 +104,23 @@ public class BehaviorRecordsController {
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<BehaviorRecordsDO> list = behaviorRecordsService.getBehaviorRecordsPage(pageReqVO).getList();
-        // 导出 Excel
-        ExcelUtils.write(response, "行为记录.xls", "数据", BehaviorRecordsRespVO.class,
-                        BeanUtils.toBean(list, BehaviorRecordsRespVO.class));
+
+        // 1. 单个员工填写
+        MedicalEthicsData data = MedicalEthicsData.createSampleData("张三");
+
+        System.out.println("员工信息：" + data.toString());
+
+        String templatePath = "医德档案考评表.xlsx";
+        templatePath = resource.getFile().getAbsolutePath();
+        System.out.println("资源是否存在: " + templatePath);
+
+        String outputPath = "医德档案考评表_张三.xlsx";
+
+        MedicalEthicsData.fillSingleEmployee(response,templatePath, outputPath, data);
+        System.out.println("单个员工文件已生成：" + outputPath);
+//        // 导出 Excel
+//        ExcelUtils.write(response, "行为记录.xls", "数据", BehaviorRecordsRespVO.class,
+//                        BeanUtils.toBean(list, BehaviorRecordsRespVO.class));
     }
 
 }

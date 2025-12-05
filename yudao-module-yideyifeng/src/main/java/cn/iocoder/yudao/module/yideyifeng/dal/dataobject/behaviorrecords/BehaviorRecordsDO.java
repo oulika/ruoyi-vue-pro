@@ -31,6 +31,11 @@ public class BehaviorRecordsDO extends BaseDO {
      * 员工ID
      */
     private Integer staffId;
+
+    /**
+     * 员工姓名
+     */
+    private String staffName;
     /**
      * 季度
      */
@@ -61,4 +66,4 @@ public class BehaviorRecordsDO extends BaseDO {
     private String imagePath;
 
 
-}
+}
